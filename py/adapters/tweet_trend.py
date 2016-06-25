@@ -19,7 +19,12 @@ class TwitterTrendAdapter(LogicAdapter):
             ('what is', 0),
             ('who is', 0),
             ('who was', 0),
-            ('what can you tell me about', 0)
+            ('what can you tell me about', 0),
+            ('what do you know about', 0),
+            ('any clue about', 0),
+            ('where is',0),
+            ('located', 0),
+            ('what is happening', 1)
         ]
 
         self.classifier = NaiveBayesClassifier(training_data)
@@ -28,7 +33,7 @@ class TwitterTrendAdapter(LogicAdapter):
         confidence = self.classifier.classify(statement.text.lower())
         tokens = nltk.word_tokenize(str(statement))
         tagged = nltk.pos_tag(tokens)
-        nouns = [word for word, pos in tagged if (pos == 'NN' or pos == 'NNP')]
+        nouns = [word for word, pos in tagged if (pos == 'NN' or pos == 'NNP' or pos =='JJ' or pos == 'NNS' or pos == 'NNPS')]
         auth = OAuthHandler(twitter_consumer_key, twitter_consumer_secret)
         auth.set_access_token(twitter_access_key, twitter_access_secret)
         api = tweepy.API(auth)
@@ -49,10 +54,11 @@ class TwitterTrendAdapter(LogicAdapter):
                     trendsName += ' '.join(names1)
             except:
                 pass
-        if len(nouns) != 0:
-            response = Statement(trendsName)
+        if len(nouns) != 0 and len(trendsName)!=0:
+            response = Statement("Jarvis: "+trendsName)
         else:
-            response = Statement("Sorry, Nothing Found Trending.")
+            response = Statement("")
+            confidence=0
         return confidence, response
 
 

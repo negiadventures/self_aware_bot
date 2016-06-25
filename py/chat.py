@@ -8,10 +8,10 @@ bot = ChatBot("Terminal",
         "chatterbot.adapters.logic.MathematicalEvaluation",
         "chatterbot.adapters.logic.ClosestMatchAdapter",
         "chatterbot.adapters.logic.ClosestMeaningAdapter",
-        "chatterbot.adapters.logic.TimeLogicAdapter",
-        "adapters.wiki.WikipediaAdapter",
         "adapters.tweet_tag.TwitterTagAdapter",
-        "adapters.tweet_trend.TwitterTrendAdapter"
+        "adapters.tweet_trend.TwitterTrendAdapter",
+        "adapters.wiki.WikipediaAdapter",
+        "chatterbot.adapters.logic.TimeLogicAdapter"
     ],
     input_adapter="chatterbot.adapters.input.VariableInputTypeAdapter",
     output_adapter="chatterbot.adapters.output.TerminalAdapter",
@@ -32,10 +32,11 @@ bot.set_trainer(ChatterBotCorpusTrainer)
 bot.train("training.conversations")
 
 #bot.train("chatterbot.corpus.english")
-print("Hey There! I am Jarvis, your personal assistant. Do you have any queries?")
+print("Jarvis: "+"Hey There! I am Jarvis, your personal assistant. Any queries?")
 
 while True:
     try:
+        print("You: ")
         bot_input = bot.get_response(raw_input())
     except (KeyboardInterrupt, EOFError, SystemExit):
         break

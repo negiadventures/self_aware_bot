@@ -14,6 +14,7 @@ class WikipediaAdapter(LogicAdapter):
             ('what is', 1),
             ('who is', 1),
             ('who was', 1),
+            ('where is',1),
             ('Could you tell me', 1),
             ('what can you tell me about', 1),
             ("what's trending in ",0),
@@ -35,7 +36,9 @@ class WikipediaAdapter(LogicAdapter):
             ('do you know the time', 0),
             ('do you know what time it is', 0),
             ('what is the time', 0),
-            ('how are you?', 0)
+            ('how are you?', 0),
+            ('any clue about', 1),
+            ('located',1)
         ]
         self.classifier = NaiveBayesClassifier(training_data)
 
@@ -53,10 +56,10 @@ class WikipediaAdapter(LogicAdapter):
         response = Statement("")
         if len(nouns) != 0:
             try:
-                response = Statement(wikipedia.summary(searchTerm, sentences=1))
+                response = Statement("Jarvis: "+wikipedia.summary(searchTerm, sentences=5))
             except wikipedia.exceptions.DisambiguationError:
                 response = Statement(
-                    "Sir, there seems to be more than one entries for this term in my dictionary. Try to be more specific please.")
+                    "Jarvis: Sir, there seems to be more than one entries for this term. Please Be more specific.")
             except:
                 confidence = 0
 
