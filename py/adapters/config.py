@@ -1,0 +1,8 @@
+twitter_consumer_key = 'WF7PIeodDCgXGfG0LlVY3uZZr'
+twitter_consumer_secret = 'MJM7BInYexB11EjsTsv3KQp8Rc4sotF9oZQf9mA2ICbtgcTzAf'
+twitter_access_key = '509165042-JOpubVaq8El4z6TFccnTmWujzd0gLKWm4hi9l7jg'
+twitter_access_secret = 'RhPLCsFwe8GxacbIpbF9UD6Kl0vWAPlTGc1EqQdnEAyBQ'
+
+yahoo_client_Id = "dj0yJmk9ME1zaVJ0UjJNRkVxJmQ9WVdrOWFraHBka3RzTkcwbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD03MA--"
+yahoo_client_secret = "75c892e2e350080491ab23581f657cb9b8156663"
+

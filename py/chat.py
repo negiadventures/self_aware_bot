@@ -1,13 +1,17 @@
 from chatterbot import ChatBot
 from chatterbot.training.trainers import ChatterBotCorpusTrainer
+from chatterbot.training.trainers import ListTrainer
 
 bot = ChatBot("Terminal",
     storage_adapter="chatterbot.adapters.storage.JsonDatabaseAdapter",
     logic_adapters=[
         "chatterbot.adapters.logic.MathematicalEvaluation",
-        "chatterbot.adapters.logic.TimeLogicAdapter",
         "chatterbot.adapters.logic.ClosestMatchAdapter",
-        "adapters.twitter.TwitterAdapter"
+        "chatterbot.adapters.logic.ClosestMeaningAdapter",
+        "chatterbot.adapters.logic.TimeLogicAdapter",
+        "adapters.wiki.WikipediaAdapter",
+        "adapters.tweet_tag.TwitterTagAdapter",
+        "adapters.tweet_trend.TwitterTrendAdapter"
     ],
     input_adapter="chatterbot.adapters.input.VariableInputTypeAdapter",
     output_adapter="chatterbot.adapters.output.TerminalAdapter",
@@ -24,10 +28,10 @@ bot = ChatBot("Terminal",
 # ]
 
 #bot.set_trainer(ListTrainer)
-#bot.train(conversation)
-
 bot.set_trainer(ChatterBotCorpusTrainer)
-bot.train("chatterbot.corpus.english")
+bot.train("training.conversations")
+
+#bot.train("chatterbot.corpus.english")
 print("Hey There! I am Jarvis, your personal assistant. Do you have any queries?")
 
 while True:
